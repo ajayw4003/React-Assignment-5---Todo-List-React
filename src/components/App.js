@@ -17,7 +17,10 @@ const App = () => {
 	}
 
 	const addToDo = () =>{
-		console.log("i am added");
+		if(todo === " "){
+			return;
+		}
+		// console.log("i am added");
 		let newToDo = {
 			id: randomNum(),
 			listItem: todo,
