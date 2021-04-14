@@ -13,7 +13,8 @@ const Input = ({handleInput, addToDo, todo}) => {
                 />
 
             <button 
-                className = "btn" 
+                className = "btn"
+                id = "btn" 
                 type = "submit" 
                 onClick = {() => addToDo()}>ADD</button>
         </div>

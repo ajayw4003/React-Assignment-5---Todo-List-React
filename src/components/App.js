@@ -1,12 +1,30 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./../styles/App.css";
 import Header from "./Header";
 import Input from "./Input";
 
 const App = () => {
-
+	
 	const [todos, setTodos] = useState([]);
 	const [todo, setTodo] = useState("");
+
+	//to check any previous data present
+	useEffect(() => {
+		console.log("initial loading")
+		const data1 = localStorage.getItem("stringWhereWeStoreData");
+		const loadedData = JSON.parse(data1);
+
+		if(loadedData){
+			setTodos(loadedData);
+		}
+	}, [])
+
+	//to store data to local storage
+	useEffect(() => {
+		console.log("is data sotirng")
+		var data1 = JSON.stringify(todos);
+		localStorage.setItem("stringWhereWeStoreData", data1);
+	}, [todos, todo])
 
 	const randomNum =() => {
 		return Math.floor(Math.random()*1000);
@@ -72,7 +90,7 @@ const App = () => {
 	}
 
 	return (
-		<div className= "container">
+		<div id = "main" className= "container">
 
 			<div className = "app">
 				<Header />
